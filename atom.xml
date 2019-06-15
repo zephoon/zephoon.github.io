@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-06-15T14:12:03.908Z</updated>
+    <updated>2019-06-15T14:15:56.115Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
@@ -10,6 +10,18 @@
     <logo>https://zeffon.github.io/images/avatar.png</logo>
     <icon>https://zeffon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, zeffon</rights>
+    <entry>
+        <title type="html"><![CDATA[左移右移]]></title>
+        <id>https://zeffon.github.io/post/zuo-yi-you-yi</id>
+        <link href="https://zeffon.github.io/post/zuo-yi-you-yi">
+        </link>
+        <updated>2019-06-15T14:14:23.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>Z &gt;&gt; n
+n &lt;&lt; Z
+</code></pre>
+<p>右移n位可以定义为除以pow(2,n)，左移n位可以定义为乘以pow(2,n)。但此结论只适用于该数左移时被溢出舍弃的高位中不包含1的情况。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://zeffon.github.io/post/hello-gridea</id>

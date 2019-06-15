@@ -1,9 +1,9 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>zeffon</title>
+<title>左移右移 | zeffon</title>
 <link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1560608140668">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -71,11 +71,70 @@
 </div>
 
 
-        <div class="tags-container">
-          
-            <a class="tag" href="https://zeffon.github.io/tag/wSToGoP1J">数据结构</a>
-          
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              左移右移
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-15 ·
+              </time>
+              
+                <a href="https://zeffon.github.io/tag/wSToGoP1J" class="post-tag">
+                  # 数据结构
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <pre><code>Z &gt;&gt; n
+n &lt;&lt; Z
+</code></pre>
+<p>右移n位可以定义为除以pow(2,n)，左移n位可以定义为乘以pow(2,n)。但此结论只适用于该数左移时被溢出舍弃的高位中不包含1的情况。</p>
+
+            </div>
+          </article>
         </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://zeffon.github.io/post/hello-gridea">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6d8de6460ee741daff71',
+    clientSecret: 'b9a44b7576af0ea947d142652e8d00ef0769f69a',
+    repo: 'zeffon.github.io',
+    owner: 'zeffon',
+    admin: ['zeffon'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
 
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
