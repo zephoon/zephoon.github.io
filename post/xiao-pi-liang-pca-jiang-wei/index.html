@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>小批量PCA降维 | zeffon</title>
-<link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1560737286006">
+<link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1560737365361">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zeffon.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://zeffon.github.io">
-  <img class="avatar" src="https://zeffon.github.io/images/avatar.png?v=1560737286006" alt="">
+  <img class="avatar" src="https://zeffon.github.io/images/avatar.png?v=1560737365361" alt="">
   </a>
   <h1 class="site-title">
     zeffon
@@ -120,7 +120,7 @@ X_reduced = inc_pca.transform(X_train)
 </code></pre>
 <h3 id="增量pca-npmemmap">增量PCA + np.memmap</h3>
 <h4 id="numpymemmap简单说明">numpy.memmap简单说明</h4>
-<pre><code>filename = &quot;my_mnist.data&quot;
+<pre><code>filename = &quot;yourself.data&quot;
 m, n = X_train.shape
 
 X_mm = np.memmap(filename, dtype='float32', mode='write', shape=(m, n))
