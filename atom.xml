@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-06-15T14:34:17.308Z</updated>
+    <updated>2019-06-17T02:08:08.879Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
@@ -10,6 +10,49 @@
     <logo>https://zeffon.github.io/images/avatar.png</logo>
     <icon>https://zeffon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, zeffon</rights>
+    <entry>
+        <title type="html"><![CDATA[小批量PCA降维]]></title>
+        <id>https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei</id>
+        <link href="https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei">
+        </link>
+        <updated>2019-06-17T01:58:57.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
+<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
+所以需要用到增量PCA。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
+<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
+所以需要用到增量PCA。</p>
+<!-- more --> 
+<h3 id="简单用法">简单用法</h3>
+<pre><code>from sklearn.decomposition import IncrementalPCA
+
+n_batches = 100
+inc_pca = IncrementalPCA(n_components=54)
+for X_batch in np.array_split(X_train, n_batches):
+    inc_pca.partial_fit(X_batch)
+
+X_reduced = inc_pca.transform(X_train)
+</code></pre>
+<h3 id="增量pca-npmemmap">增量PCA + np.memmap</h3>
+<h4 id="numpymemmap简单说明">numpy.memmap简单说明</h4>
+<pre><code>filename = &quot;my_mnist.data&quot;
+m, n = X_train.shape
+
+X_mm = np.memmap(filename, dtype='float32', mode='write', shape=(m, n))
+X_mm[:] = X_train
+
+del X_mm # 触发确保将数据缓存到disk
+</code></pre>
+<h4 id="配合numpymemmap使用按需加载数据">配合numpy.memmap使用，按需加载数据</h4>
+<pre><code>X_mm = np.memmap(filename, dtype=&quot;float32&quot;, mode=&quot;readonly&quot;, shape=(m, n))
+
+batch_size = m // n_batches
+inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
+inc_pca.fit(X_mm)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[左移右移]]></title>
         <id>https://zeffon.github.io/post/zuo-yi-you-yi</id>

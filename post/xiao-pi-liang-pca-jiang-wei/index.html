@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | zeffon</title>
+<title>小批量PCA降维 | zeffon</title>
 <link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1560737286006">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -86,22 +86,69 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              小批量PCA降维
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-06-15 ·
+                · 2019-06-17 ·
               </time>
+              
+                <a href="https://zeffon.github.io/tag/vDtkfl1cZ" class="post-tag">
+                  # sklearn
+                </a>
+              
+                <a href="https://zeffon.github.io/tag/PTyhMKSOB" class="post-tag">
+                  # 机器学习
+                </a>
               
             </div>
             
             <div class="post-content">
-              <p>人生苦短，我用Python！</p>
+              <h2 id="增量pca">增量PCA</h2>
+<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
+所以需要用到增量PCA。</p>
+<!-- more --> 
+<h3 id="简单用法">简单用法</h3>
+<pre><code>from sklearn.decomposition import IncrementalPCA
+
+n_batches = 100
+inc_pca = IncrementalPCA(n_components=54)
+for X_batch in np.array_split(X_train, n_batches):
+    inc_pca.partial_fit(X_batch)
+
+X_reduced = inc_pca.transform(X_train)
+</code></pre>
+<h3 id="增量pca-npmemmap">增量PCA + np.memmap</h3>
+<h4 id="numpymemmap简单说明">numpy.memmap简单说明</h4>
+<pre><code>filename = &quot;my_mnist.data&quot;
+m, n = X_train.shape
+
+X_mm = np.memmap(filename, dtype='float32', mode='write', shape=(m, n))
+X_mm[:] = X_train
+
+del X_mm # 触发确保将数据缓存到disk
+</code></pre>
+<h4 id="配合numpymemmap使用按需加载数据">配合numpy.memmap使用，按需加载数据</h4>
+<pre><code>X_mm = np.memmap(filename, dtype=&quot;float32&quot;, mode=&quot;readonly&quot;, shape=(m, n))
+
+batch_size = m // n_batches
+inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
+inc_pca.fit(X_mm)
+</code></pre>
 
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://zeffon.github.io/post/zuo-yi-you-yi">
+              <h3 class="post-title">
+                左移右移
+              </h3>
+            </a>
+          </div>
         
 
         
