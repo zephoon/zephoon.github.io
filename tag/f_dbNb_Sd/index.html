@@ -3,7 +3,7 @@
   <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>sklearn | zeffon</title>
+<title>环境配置 | zeffon</title>
 <link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1561685614429">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -84,22 +84,22 @@
 
         <div class="current-tag-container">
             <h2 class="title">
-                标签：#sklearn
+                标签：#环境配置
             </h2> 
         </div>
         <div class="post-container">
   
     <article class="post">
-      <a href="https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei">
-        <h2 class="post-title">小批量PCA降维</h2>
+      <a href="https://zeffon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo">
+        <h2 class="post-title">安装fbprophet遇到libstdc++报错</h2>
       </a>
       <div class="post-info">
         <time class="post-time">
-          · 2019-06-17 ·
+          · 2019-06-28 ·
         </time>
         
-          <a href="https://zeffon.github.io/tag/vDtkfl1cZ" class="post-tag">
-            # sklearn
+          <a href="https://zeffon.github.io/tag/f_dbNb_Sd" class="post-tag">
+            # 环境配置
           </a>
         
           <a href="https://zeffon.github.io/tag/PTyhMKSOB" class="post-tag">
@@ -109,9 +109,17 @@
       </div>
       
       <div class="post-abstract">
-        <h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
-所以需要用到增量PCA。</p>
+        <h5 id="环境">环境：</h5>
+<ul>
+<li>centos7.2</li>
+<li>python3.6.7</li>
+</ul>
+<h5 id="过程">过程</h5>
+<p>普通<code>pip install fbprophet</code>出现<code>gcc</code>报错
+利用<code>conda install -c anaconda fbprophet</code>安装过程没问题，但是在使用就出现报错</p>
+<pre><code>from fbprophet import Prophet
+&gt;&gt;&gt; ImportError: /lib64/libstdc++.so.6: version 'GLIBCXX_3.4.21' not found
+</code></pre>
 
       </di>
     </article>

@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>zeffon</title>
+<title>安装fbprophet遇到libstdc++报错 | zeffon</title>
 <link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1561685614429">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -82,30 +82,29 @@
   </div>
 </div>
 
-    
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://zeffon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo">
-        <h2 class="post-title">安装fbprophet遇到libstdc++报错</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-06-28 ·
-        </time>
-        
-          <a href="https://zeffon.github.io/tag/f_dbNb_Sd" class="post-tag">
-            # 环境配置
-          </a>
-        
-          <a href="https://zeffon.github.io/tag/PTyhMKSOB" class="post-tag">
-            # 机器学习
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h5 id="环境">环境：</h5>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              安装fbprophet遇到libstdc++报错
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-28 ·
+              </time>
+              
+                <a href="https://zeffon.github.io/tag/f_dbNb_Sd" class="post-tag">
+                  # 环境配置
+                </a>
+              
+                <a href="https://zeffon.github.io/tag/PTyhMKSOB" class="post-tag">
+                  # 机器学习
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <h5 id="环境">环境：</h5>
 <ul>
 <li>centos7.2</li>
 <li>python3.6.7</li>
@@ -116,66 +115,63 @@
 <pre><code>from fbprophet import Prophet
 &gt;&gt;&gt; ImportError: /lib64/libstdc++.so.6: version 'GLIBCXX_3.4.21' not found
 </code></pre>
+<!-- more --> 
+<h5 id="解决处理">解决处理</h5>
+<p>排查跟gcc版本有关，编译安装太花时间，scl安装还是报同样的错误。
+conda可以安装libgcc，
+<code>conda install -c anaconda libgcc</code>
+安装之后
+<code>ls ~/anaconda3/lib | grep libstdc++</code>
+查询发现有对应的libstdc++.so.6.0.21
+然后需要设置环境变量
+<code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/anaconda3/lib/</code>
+执行
+<code>from fbprophet import Prophet</code>
+完美没报错！！！</p>
 
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei">
-        <h2 class="post-title">小批量PCA降维</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-06-17 ·
-        </time>
-        
-          <a href="https://zeffon.github.io/tag/vDtkfl1cZ" class="post-tag">
-            # sklearn
-          </a>
-        
-          <a href="https://zeffon.github.io/tag/PTyhMKSOB" class="post-tag">
-            # 机器学习
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
-所以需要用到增量PCA。</p>
+            </div>
+          </article>
+        </div>
 
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://zeffon.github.io/post/zuo-yi-you-yi">
-        <h2 class="post-title">左移右移</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-06-15 ·
-        </time>
         
-          <a href="https://zeffon.github.io/tag/wSToGoP1J" class="post-tag">
-            # 数据结构
-          </a>
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei">
+              <h3 class="post-title">
+                小批量PCA降维
+              </h3>
+            </a>
+          </div>
         
-      </div>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-</div>
 
-    
-        <div class="pagination-container">
-  
-  
-</div>
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-    
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6d8de6460ee741daff71',
+    clientSecret: 'b9a44b7576af0ea947d142652e8d00ef0769f69a',
+    repo: 'zeffon.github.io',
+    owner: 'zeffon',
+    admin: ['zeffon'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
   <a class="rss" href="https://zeffon.github.io/atom.xml" target="_blank">RSS</a>
