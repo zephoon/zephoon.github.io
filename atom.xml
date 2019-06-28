@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-06-28T06:25:58.287Z</updated>
+    <updated>2019-06-28T06:28:18.045Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
@@ -16,7 +16,11 @@
         <link href="https://zeffon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo">
         </link>
         <updated>2019-06-28T01:21:11.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="环境">环境：</h3>
+        <summary type="html"><![CDATA[<p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
+<!-- more --> 
+<h3 id="环境">环境：</h3>
 <ul>
 <li>centos7.2</li>
 <li>python3.6.7</li>
