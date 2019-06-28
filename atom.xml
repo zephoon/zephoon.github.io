@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-06-28T01:38:29.410Z</updated>
+    <updated>2019-06-28T02:28:13.459Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
@@ -58,7 +58,7 @@ conda可以安装libgcc，</p>
 </code></pre>
 <p>查询发现有对应的libstdc++.so.6.0.21。
 然后需要设置环境变量，</p>
-<pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/anaconda3/lib/
+<pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/anaconda3/lib/libstdc++.so.6.0.21
 </code></pre>
 <p>执行：</p>
 <pre><code>from fbprophet import Prophet
