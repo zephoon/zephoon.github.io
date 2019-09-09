@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-06-28T06:28:18.045Z</updated>
+    <updated>2019-09-09T02:04:30.207Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
@@ -36,14 +36,14 @@
 &gt;&gt;&gt; ImportError: /lib64/libstdc++.so.6: version 'GLIBCXX_3.4.21' not found
 </code></pre>
 <h3 id="解决处理">解决处理</h3>
-<p>排查跟gcc版本有关，编译安装太花时间，scl安装还是报同样的错误。
+<p>排查跟gcc版本有关，编译安装太花时间，scl安装还是报同样的错误。<br>
 conda可以安装libgcc，</p>
 <pre><code>conda install -c anaconda libgcc
 </code></pre>
 <p>安装之后：</p>
 <pre><code>ls ~/anaconda3/lib | grep libstdc++
 </code></pre>
-<p>查询发现有对应的libstdc++.so.6.0.21。
+<p>查询发现有对应的libstdc++.so.6.0.21。<br>
 然后需要设置环境变量，</p>
 <pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/anaconda3/lib/libstdc++.so.6.0.21
 </code></pre>
@@ -60,11 +60,11 @@ conda可以安装libgcc，</p>
         </link>
         <updated>2019-06-17T01:58:57.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
+<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
 所以需要用到增量PCA。</p>
 ]]></summary>
         <content type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。
+<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
 所以需要用到增量PCA。</p>
 <!-- more --> 
 <h3 id="简单用法">简单用法</h3>

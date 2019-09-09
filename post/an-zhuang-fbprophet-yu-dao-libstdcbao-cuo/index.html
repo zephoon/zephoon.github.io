@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>安装fbprophet遇到libstdc++报错 | zeffon</title>
-<link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1561703296299">
+<link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1567994666912">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zeffon.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://zeffon.github.io">
-  <img class="avatar" src="https://zeffon.github.io/images/avatar.png?v=1561703296299" alt="">
+  <img class="avatar" src="https://zeffon.github.io/images/avatar.png?v=1567994666912" alt="">
   </a>
   <h1 class="site-title">
     zeffon
@@ -122,14 +122,14 @@
 &gt;&gt;&gt; ImportError: /lib64/libstdc++.so.6: version 'GLIBCXX_3.4.21' not found
 </code></pre>
 <h3 id="解决处理">解决处理</h3>
-<p>排查跟gcc版本有关，编译安装太花时间，scl安装还是报同样的错误。
+<p>排查跟gcc版本有关，编译安装太花时间，scl安装还是报同样的错误。<br>
 conda可以安装libgcc，</p>
 <pre><code>conda install -c anaconda libgcc
 </code></pre>
 <p>安装之后：</p>
 <pre><code>ls ~/anaconda3/lib | grep libstdc++
 </code></pre>
-<p>查询发现有对应的libstdc++.so.6.0.21。
+<p>查询发现有对应的libstdc++.so.6.0.21。<br>
 然后需要设置环境变量，</p>
 <pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/anaconda3/lib/libstdc++.so.6.0.21
 </code></pre>
