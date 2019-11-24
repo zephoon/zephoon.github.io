@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-11-24T14:02:50.708Z</updated>
+    <updated>2019-11-24T14:34:31.635Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
@@ -10,6 +10,52 @@
     <logo>https://zeffon.github.io/images/avatar.png</logo>
     <icon>https://zeffon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, zeffon</rights>
+    <entry>
+        <title type="html"><![CDATA[V2rayX in macOS]]></title>
+        <id>https://zeffon.github.io/post/v2rayx-in-macos</id>
+        <link href="https://zeffon.github.io/post/v2rayx-in-macos">
+        </link>
+        <updated>2019-11-24T14:04:32.000Z</updated>
+        <content type="html"><![CDATA[<p>ss和ssr经常被封😷😷😷，最终只能多花点时间实施v2ray方案了😎😎😎。</p>
+<h2 id="环境">环境</h2>
+<ul>
+<li>macOS: 10.15</li>
+<li>V2rayX:  1.5.1</li>
+</ul>
+<h2 id="配置信息">配置信息</h2>
+<ul>
+<li>V2ray订阅链接（自行搭建或者直接购买👻👻👻）</li>
+<li>服务器分享vmess链接（自行搭建或者直接购买👻👻👻）</li>
+</ul>
+<h2 id="配置流程">配置流程</h2>
+<ol>
+<li>配置订阅链接
+<ul>
+<li>Configure... -&gt; Advanced -&gt; Subsription</li>
+</ul>
+</li>
+<li>配置服务器分享vmess链接
+<ul>
+<li>Configure... -&gt; Import -&gt; Import from other links</li>
+</ul>
+</li>
+<li>Server -&gt; Update subsription</li>
+<li>一般选择【PAC Mode】</li>
+<li>v2ray-core load 开启服务</li>
+<li>查看view log<pre><code>2019/11/24 22:25:09 tcp:127.0.0.1:54781 accepted tcp:0.client-channel.google.com:443 
+ 2019/11/24 22:25:09 tcp:127.0.0.1:54780 accepted tcp:safebrowsing.googleapis.com:443
+</code></pre>
+</li>
+<li>OK! 😀😀😀</li>
+</ol>
+<p>😺😺😺good luck！</p>
+<p>相关链接</p>
+<ul>
+<li>v2ray官方文档[https://www.v2ray.com]</li>
+<li>v2rayX[https://github.com/Cenmrev/V2RayX]</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[安装fbprophet遇到libstdc++报错]]></title>
         <id>https://zeffon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo</id>
