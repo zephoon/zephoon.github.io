@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://zeffon.github.io</id>
+    <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-01-19T14:06:16.964Z</updated>
+    <updated>2020-01-19T14:08:15.635Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://zeffon.github.io"/>
-    <link rel="self" href="https://zeffon.github.io/atom.xml"/>
+    <link rel="alternate" href="https://zephoon.github.io"/>
+    <link rel="self" href="https://zephoon.github.io/atom.xml"/>
     <subtitle>code for life</subtitle>
-    <logo>https://zeffon.github.io/images/avatar.png</logo>
-    <icon>https://zeffon.github.io/favicon.ico</icon>
+    <logo>https://zephoon.github.io/images/avatar.png</logo>
+    <icon>https://zephoon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, zephoon</rights>
     <entry>
         <title type="html"><![CDATA[window配置pyspark]]></title>
-        <id>https://zeffon.github.io/post/window-pei-zhi-pyspark</id>
-        <link href="https://zeffon.github.io/post/window-pei-zhi-pyspark">
+        <id>https://zephoon.github.io/post/window-pei-zhi-pyspark</id>
+        <link href="https://zephoon.github.io/post/window-pei-zhi-pyspark">
         </link>
         <updated>2020-01-19T13:37:13.000Z</updated>
         <content type="html"><![CDATA[<p>新公司配了一台Thinkpad，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
@@ -78,8 +78,8 @@ df.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[V2rayX in macOS]]></title>
-        <id>https://zeffon.github.io/post/v2rayx-in-macos</id>
-        <link href="https://zeffon.github.io/post/v2rayx-in-macos">
+        <id>https://zephoon.github.io/post/v2rayx-in-macos</id>
+        <link href="https://zephoon.github.io/post/v2rayx-in-macos">
         </link>
         <updated>2019-11-24T14:04:32.000Z</updated>
         <content type="html"><![CDATA[<p>ss和ssr经常被封😷😷😷，最终只能多花点时间实施v2ray方案了😎😎😎。</p>
@@ -124,8 +124,8 @@ df.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[安装fbprophet遇到libstdc++报错]]></title>
-        <id>https://zeffon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo</id>
-        <link href="https://zeffon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo">
+        <id>https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo</id>
+        <link href="https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo">
         </link>
         <updated>2019-06-28T01:21:11.000Z</updated>
         <summary type="html"><![CDATA[<p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
@@ -167,8 +167,8 @@ conda可以安装libgcc，</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[小批量PCA降维]]></title>
-        <id>https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei</id>
-        <link href="https://zeffon.github.io/post/xiao-pi-liang-pca-jiang-wei">
+        <id>https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei</id>
+        <link href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei">
         </link>
         <updated>2019-06-17T01:58:57.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
@@ -210,8 +210,8 @@ inc_pca.fit(X_mm)
     </entry>
     <entry>
         <title type="html"><![CDATA[左移右移]]></title>
-        <id>https://zeffon.github.io/post/zuo-yi-you-yi</id>
-        <link href="https://zeffon.github.io/post/zuo-yi-you-yi">
+        <id>https://zephoon.github.io/post/zuo-yi-you-yi</id>
+        <link href="https://zephoon.github.io/post/zuo-yi-you-yi">
         </link>
         <updated>2019-06-15T14:14:23.000Z</updated>
         <content type="html"><![CDATA[<pre><code>Z &gt;&gt; n
