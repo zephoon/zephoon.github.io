@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
-    <title>zeffon</title>
-    <updated>2020-01-19T14:03:59.571Z</updated>
+    <title>zephoon</title>
+    <updated>2020-01-19T14:06:16.964Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
     <subtitle>code for life</subtitle>
     <logo>https://zeffon.github.io/images/avatar.png</logo>
     <icon>https://zeffon.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, zeffon</rights>
+    <rights>All rights reserved 2020, zephoon</rights>
     <entry>
         <title type="html"><![CDATA[window配置pyspark]]></title>
         <id>https://zeffon.github.io/post/window-pei-zhi-pyspark</id>
