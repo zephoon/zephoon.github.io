@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>小批量PCA降维 | zeffon</title>
+<title>window配置pyspark | zeffon</title>
 <link rel="shortcut icon" href="https://zeffon.github.io/favicon.ico?v=1579441172854">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -86,55 +86,74 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              小批量PCA降维
+              window配置pyspark
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-06-17 ·
+                · 2020-01-19 ·
               </time>
-              
-                <a href="https://zeffon.github.io/tag/vDtkfl1cZ" class="post-tag">
-                  # sklearn
-                </a>
-              
-                <a href="https://zeffon.github.io/tag/PTyhMKSOB" class="post-tag">
-                  # 机器学习
-                </a>
               
             </div>
             
             <div class="post-content">
-              <h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
-所以需要用到增量PCA。</p>
-<!-- more --> 
-<h3 id="简单用法">简单用法</h3>
-<pre><code>from sklearn.decomposition import IncrementalPCA
-
-n_batches = 100
-inc_pca = IncrementalPCA(n_components=54)
-for X_batch in np.array_split(X_train, n_batches):
-    inc_pca.partial_fit(X_batch)
-
-X_reduced = inc_pca.transform(X_train)
+              <p>新公司配了一台Thinkpad，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
+<hr>
+<ol start="0">
+<li>基本环境信息</li>
+</ol>
+<pre><code>window 10
+python 3.7.6
+conda 3.8.1
 </code></pre>
-<h3 id="增量pca-npmemmap">增量PCA + np.memmap</h3>
-<h4 id="numpymemmap简单说明">numpy.memmap简单说明</h4>
-<pre><code>filename = &quot;yourself.data&quot;
-m, n = X_train.shape
-
-X_mm = np.memmap(filename, dtype='float32', mode='write', shape=(m, n))
-X_mm[:] = X_train
-
-del X_mm # 触发确保将数据缓存到disk
+<ol>
+<li>下载</li>
+</ol>
+<p>安装方式：直接解压到对应的路径下面，例如D盘的根目录下。</p>
+<p><a href="https://www.apache.org/dyn/closer.lua/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz">apache spark</a></p>
+<p><a href="https://github.com/cdarlint/winutils">winutils</a></p>
+<ol start="2">
+<li>配置环境变量</li>
+</ol>
+<pre><code>SPARK_HOME: C:/spark/spark-2.4.4-bin-hadoop2.7
+HADOOP_HOME: C:/hadoop/winutils/hadoop-2.7.0
 </code></pre>
-<h4 id="配合numpymemmap使用按需加载数据">配合numpy.memmap使用，按需加载数据</h4>
-<pre><code>X_mm = np.memmap(filename, dtype=&quot;float32&quot;, mode=&quot;readonly&quot;, shape=(m, n))
-
-batch_size = m // n_batches
-inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
-inc_pca.fit(X_mm)
+<ol start="3">
+<li>安装pyspark<br>
+可以自行设置清华anaconda镜像源</li>
+</ol>
+<pre><code>conda install pyspark 
 </code></pre>
+<ol start="4">
+<li>代码测试</li>
+</ol>
+<pre><code>import sys
+import os
+from pathlib import WindowsPath
+
+SPARK_HOME_PATH = &quot;C:/spark/spark-2.4.4-bin-hadoop2.7&quot;
+HADOOP_HOME_PATH = &quot;C:/hadoop/winutils/hadoop-2.7.0&quot;
+os.environ['SPARK_HOME'] = SPARK_HOME_PATH
+os.environ['HADOOP_HOME'] = HADOOP_HOME_PATH
+if not SPARK_HOME_PATH in sys.path:
+    sys.path.append(SPARK_HOME_PATH)
+if not HADOOP_HOME_PATH in sys.path:
+    sys.path.append(HADOOP_HOME_PATH)
+
+import findspark 
+findspark.init() 
+import pyspark # only run after findspark.init() 
+from pyspark.sql import SparkSession 
+spark = SparkSession.builder.getOrCreate()  
+df = spark.sql('''select 'spark' as hello ''') 
+df.show()
+</code></pre>
+<ol start="5">
+<li>done!!!😎😎😎</li>
+</ol>
+<hr>
+<ol>
+<li><a href="https://changhsinlee.com/install-pyspark-windows-jupyter/">install-pyspark-windows-jupyter</a></li>
+</ol>
 
             </div>
           </article>
@@ -143,9 +162,9 @@ inc_pca.fit(X_mm)
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://zeffon.github.io/post/zuo-yi-you-yi">
+            <a href="https://zeffon.github.io/post/v2rayx-in-macos">
               <h3 class="post-title">
-                左移右移
+                V2rayX in macOS
               </h3>
             </a>
           </div>

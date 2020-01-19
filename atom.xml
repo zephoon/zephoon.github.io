@@ -2,14 +2,80 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zeffon.github.io</id>
     <title>zeffon</title>
-    <updated>2019-11-25T01:14:51.428Z</updated>
+    <updated>2020-01-19T13:39:42.144Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zeffon.github.io"/>
     <link rel="self" href="https://zeffon.github.io/atom.xml"/>
     <subtitle>code for life</subtitle>
     <logo>https://zeffon.github.io/images/avatar.png</logo>
     <icon>https://zeffon.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, zeffon</rights>
+    <rights>All rights reserved 2020, zeffon</rights>
+    <entry>
+        <title type="html"><![CDATA[window配置pyspark]]></title>
+        <id>https://zeffon.github.io/post/window-pei-zhi-pyspark</id>
+        <link href="https://zeffon.github.io/post/window-pei-zhi-pyspark">
+        </link>
+        <updated>2020-01-19T13:37:13.000Z</updated>
+        <content type="html"><![CDATA[<p>新公司配了一台Thinkpad，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
+<hr>
+<ol start="0">
+<li>基本环境信息</li>
+</ol>
+<pre><code>window 10
+python 3.7.6
+conda 3.8.1
+</code></pre>
+<ol>
+<li>下载</li>
+</ol>
+<p>安装方式：直接解压到对应的路径下面，例如D盘的根目录下。</p>
+<p><a href="https://www.apache.org/dyn/closer.lua/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz">apache spark</a></p>
+<p><a href="https://github.com/cdarlint/winutils">winutils</a></p>
+<ol start="2">
+<li>配置环境变量</li>
+</ol>
+<pre><code>SPARK_HOME: C:/spark/spark-2.4.4-bin-hadoop2.7
+HADOOP_HOME: C:/hadoop/winutils/hadoop-2.7.0
+</code></pre>
+<ol start="3">
+<li>安装pyspark<br>
+可以自行设置清华anaconda镜像源</li>
+</ol>
+<pre><code>conda install pyspark 
+</code></pre>
+<ol start="4">
+<li>代码测试</li>
+</ol>
+<pre><code>import sys
+import os
+from pathlib import WindowsPath
+
+SPARK_HOME_PATH = &quot;C:/spark/spark-2.4.4-bin-hadoop2.7&quot;
+HADOOP_HOME_PATH = &quot;C:/hadoop/winutils/hadoop-2.7.0&quot;
+os.environ['SPARK_HOME'] = SPARK_HOME_PATH
+os.environ['HADOOP_HOME'] = HADOOP_HOME_PATH
+if not SPARK_HOME_PATH in sys.path:
+    sys.path.append(SPARK_HOME_PATH)
+if not HADOOP_HOME_PATH in sys.path:
+    sys.path.append(HADOOP_HOME_PATH)
+
+import findspark 
+findspark.init() 
+import pyspark # only run after findspark.init() 
+from pyspark.sql import SparkSession 
+spark = SparkSession.builder.getOrCreate()  
+df = spark.sql('''select 'spark' as hello ''') 
+df.show()
+</code></pre>
+<ol start="5">
+<li>done!!!😎😎😎</li>
+</ol>
+<hr>
+<ol>
+<li><a href="https://changhsinlee.com/install-pyspark-windows-jupyter/">install-pyspark-windows-jupyter</a></li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[V2rayX in macOS]]></title>
         <id>https://zeffon.github.io/post/v2rayx-in-macos</id>
