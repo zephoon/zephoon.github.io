@@ -1,0 +1,270 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pyspark 常用 api 【二】 | zephoon</title>
+<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1580390885184">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://zephoon.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://zephoon.github.io">
+  <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1580390885184" alt="">
+  </a>
+  <h1 class="site-title">
+    zephoon
+  </h1>
+  <p class="site-description">
+    code for life
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/zeffon" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/yuzefeng" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/yu-ze-feng/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              pyspark 常用 api 【二】
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2020-01-30 ·
+              </time>
+              
+            </div>
+            
+            <div class="post-content">
+              <h2 id="2-programming-in-pyspark-rdds">2. Programming in PySpark RDD’s</h2>
+<h3 id="21-rdds-from-parallelized-collections">2.1 RDDs from Parallelized collections</h3>
+<pre><code># Create an RDD from a list of words
+RDD = sc.parallelize([&quot;Spark&quot;, &quot;is&quot;, &quot;a&quot;, &quot;framework&quot;, &quot;for&quot;, &quot;Big Data processing&quot;])
+
+# Print out the type of the created object
+print(&quot;The type of RDD is&quot;, type(RDD))
+</code></pre>
+<h3 id="22-rdds-from-external-datasets">2.2 RDDs from External Datasets</h3>
+<pre><code># Print the file_path
+print(&quot;The file_path is&quot;, file_path)
+
+# Create a fileRDD from file_path
+fileRDD = sc.textFile(file_path)
+
+# Check the type of fileRDD
+print(&quot;The file type of fileRDD is&quot;, type(fileRDD))
+</code></pre>
+<h3 id="23-partitions-in-your-data">2.3 Partitions in your data</h3>
+<pre><code># Check the number of partitions in fileRDD
+print(&quot;Number of partitions in fileRDD is&quot;, fileRDD.getNumPartitions())
+
+# Create a fileRDD_part from file_path with 5 partitions
+fileRDD_part = sc.textFile(file_path, minPartitions = 5)
+
+# Check the number of partitions in fileRDD_part
+print(&quot;Number of partitions in fileRDD_part is&quot;, fileRDD_part.getNumPartitions())
+</code></pre>
+<h3 id="24-map-and-collect">2.4 Map and Collect</h3>
+<pre><code># Create map() transformation to cube numbers
+cubedRDD = numbRDD.map(lambda x: x ** 3)
+
+# Collect the results
+numbers_all = cubedRDD.collect()
+
+# Print the numbers from numbers_all
+for numb in numbers_all:
+	print(numb)
+</code></pre>
+<h3 id="25-filter-and-count">2.5 Filter and Count</h3>
+<pre><code># Filter the fileRDD to select lines with Spark keyword
+fileRDD_filter = fileRDD.filter(lambda line: 'Spark' in line.split(' '))
+
+# How many lines are there in fileRDD?
+print(&quot;The total number of lines with the keyword Spark is&quot;, fileRDD_filter.count())
+
+# Print the first four lines of fileRDD
+for line in fileRDD_filter.take(4): 
+  print(line)
+</code></pre>
+<h3 id="26-reducebykey-and-collect">2.6  ReduceBykey and Collect</h3>
+<pre><code># Create PairRDD Rdd with key value pairs
+Rdd = sc.parallelize([(1,2),(3,4),(3,6),(4,5)])
+
+# Apply reduceByKey() operation on Rdd
+Rdd_Reduced = Rdd.reduceByKey(lambda x, y: x + y)
+
+# Iterate over the result and print the output
+for num in Rdd_Reduced.collect(): 
+  print(&quot;Key {} has {} Counts&quot;.format(num[0], num[1]))
+</code></pre>
+<h3 id="27-sortbykey-and-collect">2.7 SortByKey and Collect</h3>
+<pre><code># Sort the reduced RDD with the key by descending order
+Rdd_Reduced_Sort = Rdd_Reduced.sortByKey(ascending=False)
+
+# Iterate over the result and print the output
+for num in Rdd_Reduced_Sort.collect():
+  print(&quot;Key {} has {} Counts&quot;.format(num[0], num[1]))
+</code></pre>
+<h3 id="28-countingbykeys">2.8 CountingBykeys</h3>
+<pre><code># Transform the rdd with countByKey()
+total = Rdd.countByKey()
+
+# What is the type of total?
+print(&quot;The type of total is&quot;, type(total))
+
+# Iterate over the total and print the output
+for k, v in total.items(): 
+  print(&quot;key&quot;, k, &quot;has&quot;, v, &quot;counts&quot;)
+</code></pre>
+<h3 id="29-create-a-base-rdd-and-transform-it">2.9 Create a base RDD and transform it</h3>
+<pre><code># Create a baseRDD from the file path
+baseRDD = sc.textFile(file_path)
+
+# Split the lines of baseRDD into words
+splitRDD = baseRDD.flatMap(lambda x: x.split())
+
+# Count the total number of words
+print(&quot;Total number of words in splitRDD:&quot;, splitRDD.count())
+</code></pre>
+<h3 id="210-remove-stop-words-and-reduce-the-dataset">2.10 Remove stop words and reduce the dataset</h3>
+<pre><code># Convert the words in lower case and remove stop words from stop_words
+splitRDD_no_stop = splitRDD.filter(lambda x: x.lower() not in stop_words)
+
+# Create a tuple of the word and 1 
+splitRDD_no_stop_words = splitRDD_no_stop.map(lambda w: (w, 1))
+
+# Count of the number of occurences of each word
+resultRDD = splitRDD_no_stop_words.reduceByKey(lambda x, y: x + y)
+</code></pre>
+<h3 id="211-print-word-frequencies">2.11 Print word frequencies</h3>
+<pre><code># Display the first 10 words and their frequencies
+for word in resultRDD.take(10):
+	print(word)
+
+# Swap the keys and values 
+resultRDD_swap = resultRDD.map(lambda x: (x[1], x[0]))
+
+# Sort the keys in descending order
+resultRDD_swap_sort = resultRDD_swap.sortByKey(ascending=False)
+
+# Show the top 10 most frequent words and their frequencies
+for word in resultRDD_swap_sort.take(10):
+	print(&quot;{} has {} counts&quot;. format(word[1], word[0]))
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://zephoon.github.io/post/pyspark-chang-yong-api-yi">
+              <h3 class="post-title">
+                pyspark 常用 api
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '6d8de6460ee741daff71',
+    clientSecret: 'b9a44b7576af0ea947d142652e8d00ef0769f69a',
+    repo: 'zephoon.github.io',
+    owner: 'zephoon',
+    admin: ['zephoon'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://zephoon.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
