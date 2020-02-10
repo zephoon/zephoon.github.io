@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-02-10T03:49:01.480Z</updated>
+    <updated>2020-02-10T03:58:30.100Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -27,7 +27,6 @@
 </ol>
 <pre><code class="language-python">from pathlib import Path
 CURRENT_FILE_PATH = Path('.')
-
 </code></pre>
 <ol start="2">
 <li>get the current <strong>python file path</strong> no matter where the execute path is</li>
