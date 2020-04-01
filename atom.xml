@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-01T03:46:09.625Z</updated>
+    <updated>2020-04-01T03:58:45.235Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -11,58 +11,91 @@
     <icon>https://zephoon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, zephoon</rights>
     <entry>
-        <title type="html"><![CDATA[anaconda使用笔记]]></title>
-        <id>https://zephoon.github.io/post/anaconda-note</id>
-        <link href="https://zephoon.github.io/post/anaconda-note">
+        <title type="html"><![CDATA[Install Oracle Instant Client Package in centos7]]></title>
+        <id>https://zephoon.github.io/post/install-oracle-instant-client-package-in-centos7/</id>
+        <link href="https://zephoon.github.io/post/install-oracle-instant-client-package-in-centos7/">
         </link>
-        <updated>2020-04-01T03:45:05.000Z</updated>
-        <content type="html"><![CDATA[<p>安装</p>
+        <updated>2020-04-01T03:57:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>origin:https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip</p>
+<p>oracle instant package download: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basic-linux.x64-19.6.0.0.0dbru.zip</p>
+<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
 <ol>
 <li>
-<p>下载<br>
-<code>https://www.anaconda.com/distribution/#download-section</code></p>
+<p>Download an Oracle 19, 18, 12, or 11.2 “Basic” or “Basic Light” zip file: <a href="http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html">64-bit</a> or <a href="http://www.oracle.com/technetwork/topics/linuxsoft-082809.html">32-bit</a>, matching your application 64-bit or 32-bit architecture.</p>
 </li>
 <li>
-<p>拷贝到对应的主机，然后安装路径可以选择<code>/home/anaconda3</code></p>
+<p>Unzip the package into a directory that is accessible to your application. For example:</p>
+<pre><code>mkdir -p /opt/oracle
+cd /opt/oracle
+unzip instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
+</code></pre>
 </li>
 <li>
-<p>如果需要避免污染<code>.bashrc</code>, 安装过程可以取消对<code>.bashrc</code>的修改。</p>
+<p>Install the operating system libaio package with sudo or as the root user. For example:</p>
+<pre><code>sudo yum install libaio
+</code></pre>
+<p>On some Linux distributions this package is called libaio1 instead.</p>
 </li>
 <li>
-<p>执行<code>conda</code>，直接执行<code>/home/anaconda3/bin/conda</code></p>
+<p>If there is no other Oracle software on the machine that will be impacted, permanently add Instant Client to the runtime link path. For example, with sudo or as the root user:</p>
+<pre><code>sudo sh -c &quot;echo /opt/oracle/instantclient_19_3 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;
+sudo ldconfig
+</code></pre>
+<p>Alternatively, set the environment variable LD_LIBRARY_PATH to the appropriate directory for the Instant Client version. For example:<br>
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH</p>
+</li>
+<li>
+<p>If you intend to co-locate optional Oracle configuration files such as tnsnames.ora, sqlnet.ora or oraaccess.xml with Instant Client, then create a network/admin subdirectory, if it does not exist. For example:</p>
+<pre><code>mkdir -p /opt/oracle/instantclient_12_2/network/admin
+</code></pre>
+<p>This is the default Oracle configuration directory for applications linked with this Instant Client.<br>
+Alternatively, Oracle configuration files can be put in another, accessible directory. Then set the environment variable TNS_ADMIN to that directory name.</p>
 </li>
 </ol>
-<p>查看<code>conda</code>基本信息</p>
-<pre><code>conda info
+]]></summary>
+        <content type="html"><![CDATA[<p>origin:https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip</p>
+<p>oracle instant package download: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basic-linux.x64-19.6.0.0.0dbru.zip</p>
+<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
+<ol>
+<li>
+<p>Download an Oracle 19, 18, 12, or 11.2 “Basic” or “Basic Light” zip file: <a href="http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html">64-bit</a> or <a href="http://www.oracle.com/technetwork/topics/linuxsoft-082809.html">32-bit</a>, matching your application 64-bit or 32-bit architecture.</p>
+</li>
+<li>
+<p>Unzip the package into a directory that is accessible to your application. For example:</p>
+<pre><code>mkdir -p /opt/oracle
+cd /opt/oracle
+unzip instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
 </code></pre>
-<p>查看虚拟环境</p>
-<pre><code>conda env list
+</li>
+<li>
+<p>Install the operating system libaio package with sudo or as the root user. For example:</p>
+<pre><code>sudo yum install libaio
 </code></pre>
-<p>激活环境</p>
-<pre><code>conda activate env_1
-conda deactivate env_1
-check the anaconda version
-conda list anaconda
-update
-conda update conda
-conda update anaconda
-conda update all  # would update anaconda-navigator, anaconda-project, anaconda-client
+<p>On some Linux distributions this package is called libaio1 instead.</p>
+</li>
+<li>
+<p>If there is no other Oracle software on the machine that will be impacted, permanently add Instant Client to the runtime link path. For example, with sudo or as the root user:</p>
+<pre><code>sudo sh -c &quot;echo /opt/oracle/instantclient_19_3 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;
+sudo ldconfig
 </code></pre>
-<p>离线安装package</p>
-<pre><code>pip install local_package.tar.gz
-conda install --user-local local_package.tar.gz
+<p>Alternatively, set the environment variable LD_LIBRARY_PATH to the appropriate directory for the Instant Client version. For example:<br>
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH</p>
+</li>
+<li>
+<p>If you intend to co-locate optional Oracle configuration files such as tnsnames.ora, sqlnet.ora or oraaccess.xml with Instant Client, then create a network/admin subdirectory, if it does not exist. For example:</p>
+<pre><code>mkdir -p /opt/oracle/instantclient_12_2/network/admin
 </code></pre>
-<p>查询<code>python</code>版本</p>
-<pre><code>conda search python
-conda create -n py37 python=3.7
-conda env remove -n py37
-</code></pre>
+<p>This is the default Oracle configuration directory for applications linked with this Instant Client.<br>
+Alternatively, Oracle configuration files can be put in another, accessible directory. Then set the environment variable TNS_ADMIN to that directory name.</p>
+</li>
+</ol>
+<!-- more -->
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[anaconda使用笔记]]></title>
-        <id>https://zephoon.github.io/post/anaconda-shi-yong-bi-ji</id>
-        <link href="https://zephoon.github.io/post/anaconda-shi-yong-bi-ji">
+        <id>https://zephoon.github.io/post/anaconda-note/</id>
+        <link href="https://zephoon.github.io/post/anaconda-note/">
         </link>
         <updated>2020-04-01T03:45:05.000Z</updated>
         <content type="html"><![CDATA[<p>安装</p>
@@ -110,8 +143,8 @@ conda env remove -n py37
     </entry>
     <entry>
         <title type="html"><![CDATA[install python via pyenv]]></title>
-        <id>https://zephoon.github.io/post/install-python-via-pyenv</id>
-        <link href="https://zephoon.github.io/post/install-python-via-pyenv">
+        <id>https://zephoon.github.io/post/install-python-via-pyenv/</id>
+        <link href="https://zephoon.github.io/post/install-python-via-pyenv/">
         </link>
         <updated>2020-03-24T10:47:47.000Z</updated>
         <content type="html"><![CDATA[<p>假设在封闭的服务器进行安装。其实使用docker是最方便的。</p>
@@ -201,8 +234,8 @@ $ tar -cvf packages.tar ./packages ./plist.txt</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[get_current_path]]></title>
-        <id>https://zephoon.github.io/post/get_current_path</id>
-        <link href="https://zephoon.github.io/post/get_current_path">
+        <id>https://zephoon.github.io/post/get_current_path/</id>
+        <link href="https://zephoon.github.io/post/get_current_path/">
         </link>
         <updated>2020-02-10T03:47:59.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="get_current_path">get_current_path</h2>
@@ -228,8 +261,8 @@ CURRENT_FILE_PATH = Path(__file__)
     </entry>
     <entry>
         <title type="html"><![CDATA[pyspark 常用 api]]></title>
-        <id>https://zephoon.github.io/post/pyspark-chang-yong-api</id>
-        <link href="https://zephoon.github.io/post/pyspark-chang-yong-api">
+        <id>https://zephoon.github.io/post/pyspark-chang-yong-api/</id>
+        <link href="https://zephoon.github.io/post/pyspark-chang-yong-api/">
         </link>
         <updated>2020-01-30T13:29:59.000Z</updated>
         <summary type="html"><![CDATA[<p>最近在做对接数据仓库的数据清洗和预处理，攒了一些pyspark常用api备用。😜😜😜</p>
@@ -528,8 +561,8 @@ plt.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[window配置pyspark]]></title>
-        <id>https://zephoon.github.io/post/window-pei-zhi-pyspark</id>
-        <link href="https://zephoon.github.io/post/window-pei-zhi-pyspark">
+        <id>https://zephoon.github.io/post/window-pei-zhi-pyspark/</id>
+        <link href="https://zephoon.github.io/post/window-pei-zhi-pyspark/">
         </link>
         <updated>2020-01-19T13:37:13.000Z</updated>
         <content type="html"><![CDATA[<p>新公司配了一台Thinkpad，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
@@ -594,8 +627,8 @@ df.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[V2rayX in macOS]]></title>
-        <id>https://zephoon.github.io/post/v2rayx-in-macos</id>
-        <link href="https://zephoon.github.io/post/v2rayx-in-macos">
+        <id>https://zephoon.github.io/post/v2rayx-in-macos/</id>
+        <link href="https://zephoon.github.io/post/v2rayx-in-macos/">
         </link>
         <updated>2019-11-24T14:04:32.000Z</updated>
         <content type="html"><![CDATA[<p>ss和ssr经常被封😷😷😷，最终只能多花点时间实施v2ray方案了😎😎😎。</p>
@@ -640,8 +673,8 @@ df.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[安装fbprophet遇到libstdc++报错]]></title>
-        <id>https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo</id>
-        <link href="https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo">
+        <id>https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo/</id>
+        <link href="https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo/">
         </link>
         <updated>2019-06-28T01:21:11.000Z</updated>
         <summary type="html"><![CDATA[<p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
@@ -683,8 +716,8 @@ conda可以安装libgcc，</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[小批量PCA降维]]></title>
-        <id>https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei</id>
-        <link href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei">
+        <id>https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/</id>
+        <link href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/">
         </link>
         <updated>2019-06-17T01:58:57.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
@@ -726,8 +759,8 @@ inc_pca.fit(X_mm)
     </entry>
     <entry>
         <title type="html"><![CDATA[左移右移]]></title>
-        <id>https://zephoon.github.io/post/zuo-yi-you-yi</id>
-        <link href="https://zephoon.github.io/post/zuo-yi-you-yi">
+        <id>https://zephoon.github.io/post/zuo-yi-you-yi/</id>
+        <link href="https://zephoon.github.io/post/zuo-yi-you-yi/">
         </link>
         <updated>2019-06-15T14:14:23.000Z</updated>
         <content type="html"><![CDATA[<pre><code>Z &gt;&gt; n

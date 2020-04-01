@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>左移右移 | zephoon</title>
+<title>Install Oracle Instant Client Package in centos7 | zephoon</title>
 <link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1585713520603">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -86,29 +86,75 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              左移右移
+              Install Oracle Instant Client Package in centos7
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-06-15 ·
+                · 2020-04-01 ·
               </time>
               
-                <a href="https://zephoon.github.io/tag/wSToGoP1J/" class="post-tag">
-                  # 数据结构
+                <a href="https://zephoon.github.io/tag/NaWbETxId/" class="post-tag">
+                  # oracle instant client
+                </a>
+              
+                <a href="https://zephoon.github.io/tag/2NxcnQU917/" class="post-tag">
+                  # centos7
                 </a>
               
             </div>
             
             <div class="post-content">
-              <pre><code>Z &gt;&gt; n
-n &lt;&lt; Z
+              <p>origin:https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip</p>
+<p>oracle instant package download: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basic-linux.x64-19.6.0.0.0dbru.zip</p>
+<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
+<ol>
+<li>
+<p>Download an Oracle 19, 18, 12, or 11.2 “Basic” or “Basic Light” zip file: <a href="http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html">64-bit</a> or <a href="http://www.oracle.com/technetwork/topics/linuxsoft-082809.html">32-bit</a>, matching your application 64-bit or 32-bit architecture.</p>
+</li>
+<li>
+<p>Unzip the package into a directory that is accessible to your application. For example:</p>
+<pre><code>mkdir -p /opt/oracle
+cd /opt/oracle
+unzip instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
 </code></pre>
-<p>右移n位可以定义为除以<code>pow(2,n)</code>，左移n位可以定义为乘以<code>pow(2,n)</code>。但此结论只适用于该数左移时被溢出舍弃的高位中不包含1的情况。</p>
+</li>
+<li>
+<p>Install the operating system libaio package with sudo or as the root user. For example:</p>
+<pre><code>sudo yum install libaio
+</code></pre>
+<p>On some Linux distributions this package is called libaio1 instead.</p>
+</li>
+<li>
+<p>If there is no other Oracle software on the machine that will be impacted, permanently add Instant Client to the runtime link path. For example, with sudo or as the root user:</p>
+<pre><code>sudo sh -c &quot;echo /opt/oracle/instantclient_19_3 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;
+sudo ldconfig
+</code></pre>
+<p>Alternatively, set the environment variable LD_LIBRARY_PATH to the appropriate directory for the Instant Client version. For example:<br>
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH</p>
+</li>
+<li>
+<p>If you intend to co-locate optional Oracle configuration files such as tnsnames.ora, sqlnet.ora or oraaccess.xml with Instant Client, then create a network/admin subdirectory, if it does not exist. For example:</p>
+<pre><code>mkdir -p /opt/oracle/instantclient_12_2/network/admin
+</code></pre>
+<p>This is the default Oracle configuration directory for applications linked with this Instant Client.<br>
+Alternatively, Oracle configuration files can be put in another, accessible directory. Then set the environment variable TNS_ADMIN to that directory name.</p>
+</li>
+</ol>
+<!-- more -->
 
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://zephoon.github.io/post/anaconda-note/">
+              <h3 class="post-title">
+                anaconda使用笔记
+              </h3>
+            </a>
+          </div>
         
 
         
