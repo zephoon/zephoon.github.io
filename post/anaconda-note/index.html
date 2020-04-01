@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>小批量PCA降维 | zephoon</title>
+<title>anaconda使用笔记 | zephoon</title>
 <link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1585712765105">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -86,54 +86,64 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              小批量PCA降维
+              anaconda使用笔记
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2019-06-17 ·
+                · 2020-04-01 ·
               </time>
               
-                <a href="https://zephoon.github.io/tag/vDtkfl1cZ" class="post-tag">
-                  # sklearn
+                <a href="https://zephoon.github.io/tag/rYXEV0tID" class="post-tag">
+                  # anaconda
                 </a>
               
-                <a href="https://zephoon.github.io/tag/PTyhMKSOB" class="post-tag">
-                  # 机器学习
+                <a href="https://zephoon.github.io/tag/atS3OBcnDa" class="post-tag">
+                  # conda
                 </a>
               
             </div>
             
             <div class="post-content">
-              <h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
-所以需要用到增量PCA。</p>
-<!-- more --> 
-<h3 id="简单用法">简单用法</h3>
-<pre><code>from sklearn.decomposition import IncrementalPCA
-
-n_batches = 100
-inc_pca = IncrementalPCA(n_components=54)
-for X_batch in np.array_split(X_train, n_batches):
-    inc_pca.partial_fit(X_batch)
-
-X_reduced = inc_pca.transform(X_train)
+              <p>安装</p>
+<ol>
+<li>
+<p>下载<br>
+<code>https://www.anaconda.com/distribution/#download-section</code></p>
+</li>
+<li>
+<p>拷贝到对应的主机，然后安装路径可以选择<code>/home/anaconda3</code></p>
+</li>
+<li>
+<p>如果需要避免污染<code>.bashrc</code>, 安装过程可以取消对<code>.bashrc</code>的修改。</p>
+</li>
+<li>
+<p>执行<code>conda</code>，直接执行<code>/home/anaconda3/bin/conda</code></p>
+</li>
+</ol>
+<p>查看<code>conda</code>基本信息</p>
+<pre><code>conda info
 </code></pre>
-<h3 id="增量pca-npmemmap">增量PCA + np.memmap</h3>
-<h4 id="numpymemmap简单说明">numpy.memmap简单说明</h4>
-<pre><code>filename = &quot;yourself.data&quot;
-m, n = X_train.shape
-
-X_mm = np.memmap(filename, dtype='float32', mode='write', shape=(m, n))
-X_mm[:] = X_train
-
-del X_mm # 触发确保将数据缓存到disk
+<p>查看虚拟环境</p>
+<pre><code>conda env list
 </code></pre>
-<h4 id="配合numpymemmap使用按需加载数据">配合numpy.memmap使用，按需加载数据</h4>
-<pre><code>X_mm = np.memmap(filename, dtype=&quot;float32&quot;, mode=&quot;readonly&quot;, shape=(m, n))
-
-batch_size = m // n_batches
-inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
-inc_pca.fit(X_mm)
+<p>激活环境</p>
+<pre><code>conda activate env_1
+conda deactivate env_1
+check the anaconda version
+conda list anaconda
+update
+conda update conda
+conda update anaconda
+conda update all  # would update anaconda-navigator, anaconda-project, anaconda-client
+</code></pre>
+<p>离线安装package</p>
+<pre><code>pip install local_package.tar.gz
+conda install --user-local local_package.tar.gz
+</code></pre>
+<p>查询<code>python</code>版本</p>
+<pre><code>conda search python
+conda create -n py37 python=3.7
+conda env remove -n py37
 </code></pre>
 
             </div>
@@ -143,9 +153,9 @@ inc_pca.fit(X_mm)
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://zephoon.github.io/post/zuo-yi-you-yi">
+            <a href="https://zephoon.github.io/post/anaconda-shi-yong-bi-ji">
               <h3 class="post-title">
-                左移右移
+                anaconda使用笔记
               </h3>
             </a>
           </div>
