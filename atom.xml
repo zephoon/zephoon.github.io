@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-01T03:59:25.659Z</updated>
+    <updated>2020-04-01T04:00:18.442Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -16,46 +16,10 @@
         <link href="https://zephoon.github.io/post/install-oracle-instant-client-package-in-centos7/">
         </link>
         <updated>2020-04-01T03:57:04.000Z</updated>
-        <summary type="html"><![CDATA[<p>origin:https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip</p>
-<p>oracle instant package download: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basic-linux.x64-19.6.0.0.0dbru.zip</p>
-<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
-<ol>
-<li>
-<p>Download an Oracle 19, 18, 12, or 11.2 “Basic” or “Basic Light” zip file: <a href="http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html">64-bit</a> or <a href="http://www.oracle.com/technetwork/topics/linuxsoft-082809.html">32-bit</a>, matching your application 64-bit or 32-bit architecture.</p>
-</li>
-<li>
-<p>Unzip the package into a directory that is accessible to your application. For example:</p>
-<pre><code>mkdir -p /opt/oracle
-cd /opt/oracle
-unzip instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
-</code></pre>
-</li>
-<li>
-<p>Install the operating system libaio package with sudo or as the root user. For example:</p>
-<pre><code>sudo yum install libaio
-</code></pre>
-<p>On some Linux distributions this package is called libaio1 instead.</p>
-</li>
-<li>
-<p>If there is no other Oracle software on the machine that will be impacted, permanently add Instant Client to the runtime link path. For example, with sudo or as the root user:</p>
-<pre><code>sudo sh -c &quot;echo /opt/oracle/instantclient_19_3 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf&quot;
-sudo ldconfig
-</code></pre>
-<p>Alternatively, set the environment variable LD_LIBRARY_PATH to the appropriate directory for the Instant Client version. For example:<br>
-export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH</p>
-</li>
-<li>
-<p>If you intend to co-locate optional Oracle configuration files such as tnsnames.ora, sqlnet.ora or oraaccess.xml with Instant Client, then create a network/admin subdirectory, if it does not exist. For example:</p>
-<pre><code>mkdir -p /opt/oracle/instantclient_12_2/network/admin
-</code></pre>
-<p>This is the default Oracle configuration directory for applications linked with this Instant Client.<br>
-Alternatively, Oracle configuration files can be put in another, accessible directory. Then set the environment variable TNS_ADMIN to that directory name.</p>
-</li>
-</ol>
+        <summary type="html"><![CDATA[<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>origin:https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip</p>
-<p>oracle instant package download: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basic-linux.x64-19.6.0.0.0dbru.zip</p>
-<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
+        <content type="html"><![CDATA[<p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
+<!-- more -->
 <ol>
 <li>
 <p>Download an Oracle 19, 18, 12, or 11.2 “Basic” or “Basic Light” zip file: <a href="http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html">64-bit</a> or <a href="http://www.oracle.com/technetwork/topics/linuxsoft-082809.html">32-bit</a>, matching your application 64-bit or 32-bit architecture.</p>
@@ -89,7 +53,9 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH</p>
 Alternatively, Oracle configuration files can be put in another, accessible directory. Then set the environment variable TNS_ADMIN to that directory name.</p>
 </li>
 </ol>
-<!-- more -->
+<hr>
+<p>origin:https://oracle.github.io/odpi/doc/installation.html#oracle-instant-client-zip</p>
+<p>oracle instant package download: https://download.oracle.com/otn_software/linux/instantclient/19600/instantclient-basic-linux.x64-19.6.0.0.0dbru.zip</p>
 ]]></content>
     </entry>
     <entry>
