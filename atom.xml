@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-01T04:03:24.296Z</updated>
+    <updated>2020-04-04T04:01:52.532Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -10,6 +10,22 @@
     <logo>https://zephoon.github.io/images/avatar.png</logo>
     <icon>https://zephoon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, zephoon</rights>
+    <entry>
+        <title type="html"><![CDATA[spark学习资源]]></title>
+        <id>https://zephoon.github.io/post/spark-xue-xi-zi-yuan/</id>
+        <link href="https://zephoon.github.io/post/spark-xue-xi-zi-yuan/">
+        </link>
+        <updated>2020-04-04T04:01:16.000Z</updated>
+        <summary type="html"><![CDATA[<ol>
+<li><a href="https://sharkdtu.com/posts/pyspark-internal.html">PySpark 的背后原理</a></li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<ol>
+<li><a href="https://sharkdtu.com/posts/pyspark-internal.html">PySpark 的背后原理</a></li>
+</ol>
+<!-- more -->
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Install Oracle Instant Client Package in centos7]]></title>
         <id>https://zephoon.github.io/post/install-oracle-instant-client-package-in-centos7/</id>
@@ -721,18 +737,6 @@ batch_size = m // n_batches
 inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
 inc_pca.fit(X_mm)
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[左移右移]]></title>
-        <id>https://zephoon.github.io/post/zuo-yi-you-yi/</id>
-        <link href="https://zephoon.github.io/post/zuo-yi-you-yi/">
-        </link>
-        <updated>2019-06-15T14:14:23.000Z</updated>
-        <content type="html"><![CDATA[<pre><code>Z &gt;&gt; n
-n &lt;&lt; Z
-</code></pre>
-<p>右移n位可以定义为除以<code>pow(2,n)</code>，左移n位可以定义为乘以<code>pow(2,n)</code>。但此结论只适用于该数左移时被溢出舍弃的高位中不包含1的情况。</p>
 ]]></content>
     </entry>
 </feed>
