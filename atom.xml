@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-05T12:36:41.336Z</updated>
+    <updated>2020-04-05T12:39:40.065Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -16,7 +16,15 @@
         <link href="https://zephoon.github.io/post/use-scala-in-pysaprk/">
         </link>
         <updated>2020-04-05T10:34:41.000Z</updated>
-        <content type="html"><![CDATA[<!-- more -->
+        <summary type="html"><![CDATA[<p>To improve the performance in pyspark, with using scala.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>To improve the performance in pyspark, with using scala.</p>
+<!-- more -->
+<ol start="0">
+<li>build jar from scala</li>
+</ol>
+<pre><code>scalac A.scala B.scala -d A.jar
+</code></pre>
 <ol>
 <li>command cli -&gt; pyspark shell use scala</li>
 </ol>
