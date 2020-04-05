@@ -1,172 +1,60 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+  <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>机器学习 | zephoon</title>
-<meta name="description" content="code for life">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1586092099648">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1586091229964">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zephoon.github.io/styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://zephoon.github.io">
-        <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1586091229964" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://zephoon.github.io">
-        <h1 class="site-title">zephoon</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> 机器学习
-          </h2> 
-        </div>
-
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo/">
-        <h2 class="post-title">安装fbprophet遇到libstdc++报错</h2>
-      </a>
-      <div class="post-abstract">
-        <p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-28</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://zephoon.github.io/tag/f_dbNb_Sd/">
-                环境配置
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://zephoon.github.io/tag/PTyhMKSOB/">
-                机器学习
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://zephoon.github.io">
+  <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1586092099648" alt="">
+  </a>
+  <h1 class="site-title">
+    zephoon
+  </h1>
+  <p class="site-description">
+    code for life
+  </p>
+  <div class="menu-container">
     
-  </section>
-
-<section class="post-item">
-    <div class="content">
-      <a href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/">
-        <h2 class="post-title">小批量PCA降维</h2>
-      </a>
-      <div class="post-abstract">
-        <h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
-所以需要用到增量PCA。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-06-17</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://zephoon.github.io/tag/vDtkfl1cZ/">
-                sklearn
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://zephoon.github.io/tag/PTyhMKSOB/">
-                机器学习
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
     
-  </section>
-
-
-<div class="pagination-container">
-  
-  
-</div>
-
-
-      </div>
-
-      <div class="site-footer">
-  <div class="slogan">code for life</div>
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
   <div class="social-container">
     
       
@@ -192,26 +80,84 @@
       
     
   </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zephoon.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
+        <div class="current-tag-container">
+            <h2 class="title">
+                标签：#机器学习
+            </h2> 
+        </div>
+        <div class="post-container">
+  
+    <article class="post">
+      <a href="https://zephoon.github.io/post/an-zhuang-fbprophet-yu-dao-libstdcbao-cuo/">
+        <h2 class="post-title">安装fbprophet遇到libstdc++报错</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-06-28 ·
+        </time>
+        
+          <a href="https://zephoon.github.io/tag/f_dbNb_Sd/" class="post-tag">
+            # 环境配置
+          </a>
+        
+          <a href="https://zephoon.github.io/tag/PTyhMKSOB/" class="post-tag">
+            # 机器学习
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        <p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
 
-    </div>
-    <script type="application/javascript">
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/">
+        <h2 class="post-title">小批量PCA降维</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-06-17 ·
+        </time>
+        
+          <a href="https://zephoon.github.io/tag/vDtkfl1cZ/" class="post-tag">
+            # sklearn
+          </a>
+        
+          <a href="https://zephoon.github.io/tag/PTyhMKSOB/" class="post-tag">
+            # 机器学习
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        <h2 id="增量pca">增量PCA</h2>
+<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
+所以需要用到增量PCA。</p>
 
-hljs.initHighlightingOnLoad()
+      </di>
+    </article>
+  
+</div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        <div class="pagination-container">
+  
+  
+</div>
 
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://zephoon.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>
