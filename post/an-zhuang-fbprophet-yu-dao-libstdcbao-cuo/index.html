@@ -1,110 +1,115 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>安装fbprophet遇到libstdc++报错 | zephoon</title>
-<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1586090375219">
+<meta name="description" content="code for life">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1586091229964">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zephoon.github.io/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://zephoon.github.io">
-  <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1586090375219" alt="">
-  </a>
-  <h1 class="site-title">
-    zephoon
-  </h1>
-  <p class="site-description">
-    code for life
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/zeffon" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/yuzefeng" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-    
-      
-        <a href="https://www.zhihu.com/people/yu-ze-feng/activities" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://zephoon.github.io">
+        <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1586091229964" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://zephoon.github.io">
+        <h1 class="site-title">zephoon</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              安装fbprophet遇到libstdc++报错
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2019-06-28 ·
-              </time>
-              
-                <a href="https://zephoon.github.io/tag/f_dbNb_Sd/" class="post-tag">
-                  # 环境配置
-                </a>
-              
-                <a href="https://zephoon.github.io/tag/PTyhMKSOB/" class="post-tag">
-                  # 机器学习
-                </a>
-              
-            </div>
+          
+          <h2 class="post-title">安装fbprophet遇到libstdc++报错</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-06-28</span>
             
-            <div class="post-content">
-              <p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://zephoon.github.io/tag/f_dbNb_Sd/">
+                    环境配置
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://zephoon.github.io/tag/PTyhMKSOB/">
+                    机器学习
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><code>gcc</code>使用正常，但是就是没法正确安装fbprophet或者成功安装但没法运行。</p>
 <!-- more --> 
 <h3 id="环境">环境：</h3>
 <ul>
@@ -138,59 +143,98 @@ conda可以安装libgcc，</p>
 </code></pre>
 <p>完美没报错！！！</p>
 
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/">
+            <a class="purple-link" href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/">
               <h3 class="post-title">
-                小批量PCA降维
+                下一篇：小批量PCA降维
               </h3>
             </a>
           </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
         
 
         
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+      
 
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: '6d8de6460ee741daff71',
-    clientSecret: 'b9a44b7576af0ea947d142652e8d00ef0769f69a',
-    repo: 'zephoon.github.io',
-    owner: 'zephoon',
-    admin: ['zephoon'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://zephoon.github.io/atom.xml" target="_blank">RSS</a>
+      <div class="site-footer">
+  <div class="slogan">code for life</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/zeffon" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/yuzefeng" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/yu-ze-feng/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://zephoon.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-      </div>
-    </div>
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '6d8de6460ee741daff71',
+        clientSecret: 'b9a44b7576af0ea947d142652e8d00ef0769f69a',
+        repo: 'zephoon.github.io',
+        owner: 'zephoon',
+        admin: ['zephoon'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>
