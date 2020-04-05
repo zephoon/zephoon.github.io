@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-04T10:49:43.010Z</updated>
+    <updated>2020-04-05T12:36:26.794Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -10,6 +10,75 @@
     <logo>https://zephoon.github.io/images/avatar.png</logo>
     <icon>https://zephoon.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, zephoon</rights>
+    <entry>
+        <title type="html"><![CDATA[use scala in pysaprk]]></title>
+        <id>https://zephoon.github.io/post/use-scala-in-pysaprk/</id>
+        <link href="https://zephoon.github.io/post/use-scala-in-pysaprk/">
+        </link>
+        <updated>2020-04-05T10:34:41.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<ol>
+<li>command cli -&gt; pyspark shell use scala</li>
+</ol>
+<pre><code>df = ... # Python DataFrame
+</code></pre>
+<p>you'll have to:</p>
+<p>Build a jar using your favorite build tool.</p>
+<p>Include it in the driver classpath for example using --driver-class-path argument for PySpark shell / spark-submit. Depending on the exact code you may have to pass it using --jars as well</p>
+<p>Extract JVM instance from a Python SparkContext instance:</p>
+<pre><code>jvm = sc._jvm
+</code></pre>
+<p>Extract Scala SQLContext from a SQLContext instance:</p>
+<pre><code>ssqlContext = sqlContext._ssql_ctx
+</code></pre>
+<p>Extract Java DataFrame from the df:</p>
+<pre><code>jdf = df._jdf
+</code></pre>
+<p>Create new instance of SimpleClass:</p>
+<pre><code>simpleObject = jvm.com.example.SimpleClass(ssqlContext, jdf, &quot;v&quot;)
+</code></pre>
+<p>Callexe method and wrap the result using Python DataFrame:</p>
+<pre><code>from pyspark.sql import DataFrame
+
+DataFrame(simpleObject.exe(), ssqlContext)
+</code></pre>
+<p>The result should be a valid PySpark DataFrame. You can of course combine all the steps into a single call.</p>
+<ol start="2">
+<li>notebook -&gt; SparkSession 调用scala</li>
+</ol>
+<pre><code># scala
+
+package com.ippontech
+
+class Hello(n: Int) {
+  var a = n
+  def hello(m: Int): Int = {
+    a = m
+    return a
+  }
+}
+
+</code></pre>
+<pre><code># notebook
+from pyspark import SparkConf
+from pyspark.sql import SparkSession
+
+config = SparkConf().setAll([('spark.driver.extraClassPath', '/Users/yuzefeng/spark_project/project_1/ippontech.jar')])
+
+sparksession = SparkSession\
+                    .builder\
+                    .appName(&quot;scala_app&quot;) \
+                    .config(conf=config)\
+                    .getOrCreate()
+h = sparksession._jvm.com.ippontech.Hello
+print(h(8).hello(9))
+# 9
+</code></pre>
+<hr>
+<p><a href="https://stackoverflow.com/questions/36023860/how-to-use-a-scala-class-inside-pyspark">how-to-use-a-scala-class-inside-pyspark)</a></p>
+<p><a href="https://aseigneurin.github.io/2016/09/01/spark-calling-scala-code-from-pyspark.html">spark-calling-scala-code-from-pyspark</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[spark学习资源]]></title>
         <id>https://zephoon.github.io/post/spark-xue-xi-zi-yuan/</id>
@@ -694,49 +763,6 @@ conda可以安装libgcc，</p>
 <pre><code>from fbprophet import Prophet
 </code></pre>
 <p>完美没报错！！！</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[小批量PCA降维]]></title>
-        <id>https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/</id>
-        <link href="https://zephoon.github.io/post/xiao-pi-liang-pca-jiang-wei/">
-        </link>
-        <updated>2019-06-17T01:58:57.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
-所以需要用到增量PCA。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="增量pca">增量PCA</h2>
-<p>普通的PCA直接将全部训练集加载内存之中，这样内存很容易出现瓶颈。<br>
-所以需要用到增量PCA。</p>
-<!-- more --> 
-<h3 id="简单用法">简单用法</h3>
-<pre><code>from sklearn.decomposition import IncrementalPCA
-
-n_batches = 100
-inc_pca = IncrementalPCA(n_components=54)
-for X_batch in np.array_split(X_train, n_batches):
-    inc_pca.partial_fit(X_batch)
-
-X_reduced = inc_pca.transform(X_train)
-</code></pre>
-<h3 id="增量pca-npmemmap">增量PCA + np.memmap</h3>
-<h4 id="numpymemmap简单说明">numpy.memmap简单说明</h4>
-<pre><code>filename = &quot;yourself.data&quot;
-m, n = X_train.shape
-
-X_mm = np.memmap(filename, dtype='float32', mode='write', shape=(m, n))
-X_mm[:] = X_train
-
-del X_mm # 触发确保将数据缓存到disk
-</code></pre>
-<h4 id="配合numpymemmap使用按需加载数据">配合numpy.memmap使用，按需加载数据</h4>
-<pre><code>X_mm = np.memmap(filename, dtype=&quot;float32&quot;, mode=&quot;readonly&quot;, shape=(m, n))
-
-batch_size = m // n_batches
-inc_pca = IncrementalPCA(n_components=154, batch_size=batch_size)
-inc_pca.fit(X_mm)
-</code></pre>
 ]]></content>
     </entry>
 </feed>
