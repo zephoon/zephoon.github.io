@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>use scala in pysaprk | zephoon</title>
-<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1586092099648">
+<link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1586226661550">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://zephoon.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://zephoon.github.io">
-  <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1586092099648" alt="">
+  <img class="avatar" src="https://zephoon.github.io/images/avatar.png?v=1586226661550" alt="">
   </a>
   <h1 class="site-title">
     zephoon
@@ -106,14 +106,6 @@
             <div class="post-content">
               <p>To improve the performance in pyspark, with using scala.</p>
 <!-- more -->
-<ol start="0">
-<li>build jar from scala</li>
-</ol>
-<pre><code>scalac A.scala B.scala -d A.jar
-</code></pre>
-<ol>
-<li>command cli -&gt; pyspark shell use scala</li>
-</ol>
 <pre><code>df = ... # Python DataFrame
 </code></pre>
 <p>you'll have to:</p>
@@ -137,41 +129,109 @@
 DataFrame(simpleObject.exe(), ssqlContext)
 </code></pre>
 <p>The result should be a valid PySpark DataFrame. You can of course combine all the steps into a single call.</p>
-<ol start="2">
-<li>notebook -&gt; SparkSession 调用scala</li>
+<hr>
+<p>etc.<br>
+0. config build.sbt</p>
+<pre><code># build.sbt
+name := &quot;learn_scala_spark&quot;
+
+version := &quot;0.1&quot;
+
+scalaVersion := &quot;2.11.12&quot;
+
+javacOptions ++= Seq(&quot;-encoding&quot;, &quot;UTF-8&quot;)
+javacOptions ++= Seq(&quot;-source&quot;, &quot;1.8&quot;, &quot;-target&quot;, &quot;1.8&quot;, &quot;-Xlint&quot;)
+
+libraryDependencies += &quot;org.apache.spark&quot; %% &quot;spark-core&quot; % &quot;2.4.5&quot;
+libraryDependencies += &quot;org.apache.spark&quot; %% &quot;spark-sql&quot; % &quot;2.4.5&quot;
+libraryDependencies += &quot;org.apache.spark&quot; %% &quot;spark-hive&quot; % &quot;2.4.5&quot;
+libraryDependencies += &quot;com.optimaize.languagedetector&quot; % &quot;language-detector&quot; % &quot;0.6&quot;
+
+</code></pre>
+<ol>
+<li>scala udf</li>
 </ol>
-<pre><code># scala
+<pre><code># src/main/scala/StringLength.Scala
+package com.learning
 
-package com.ippontech
+import org.apache.spark.sql.expressions.UserDefinedFunction
+import org.apache.spark.sql.functions._
 
-class Hello(n: Int) {
-  var a = n
-  def hello(m: Int): Int = {
-    a = m
-    return a
-  }
+object StringLength {
+    def getStringLength(s: String) = s.length
+    def getFun: UserDefinedFunction = udf { x: String =&gt; getStringLength(x) }
 }
 
 </code></pre>
-<pre><code># notebook
-from pyspark import SparkConf
+<ol start="2">
+<li>sbt handle</li>
+</ol>
+<pre><code>sbt compile
+sbt package
+</code></pre>
+<ol start="3">
+<li>execute test.py</li>
+</ol>
+<pre><code># test.py
 from pyspark.sql import SparkSession
+from pyspark import SparkConf
+from pyspark.sql.column import Column
+from pyspark.sql.column import _to_java_column
+from pyspark.sql.column import _to_seq
+from pyspark.sql.functions import col
+ 
+config = SparkConf().setAll([\
+                    ('spark.driver.extraClassPath', '/Users/yuzefeng/spark_project/project_1/target/scala-2.11/learn_scala_spark_2.11-0.1.jar'), \
+                    ('spark.jars', '/Users/yuzefeng/spark_project/project_1/target/scala-2.11/learn_scala_spark_2.11-0.1.jar')\
+                    ])
 
-config = SparkConf().setAll([('spark.driver.extraClassPath', '/Users/yuzefeng/spark_project/project_1/ippontech.jar')])
-
-sparksession = SparkSession\
+spark = SparkSession\
                     .builder\
                     .appName(&quot;scala_app&quot;) \
                     .config(conf=config)\
                     .getOrCreate()
-h = sparksession._jvm.com.ippontech.Hello
-print(h(8).hello(9))
-# 9
+sc = spark.sparkContext
+ 
+def string_length(col):
+    _string_length = spark._jvm.com.learning.StringLength.getFun()
+    return Column(_string_length.apply(_to_seq(sc, [col], _to_java_column)))
+ 
+def process():
+    rows = [
+        (&quot;k1&quot;, &quot;aaa&quot;),
+        (&quot;k2&quot;, &quot;dd&quot;),
+        (&quot;k3&quot;, &quot;cc&quot;),
+        (&quot;k4&quot;, &quot;eee&quot;),
+    ]
+    df = spark.createDataFrame(rows, ['key', 'value'])
+    df.show(50)
+    df.select(col(&quot;key&quot;), string_length(col(&quot;value&quot;))).show()
+
+process()
+# output
+&quot;&quot;&quot;
++---+-----+
+|key|value|
++---+-----+
+| k1|  aaa|
+| k2|   dd|
+| k3|   cc|
+| k4|  eee|
++---+-----+
+
++---+----------+
+|key|UDF(value)|
++---+----------+
+| k1|         3|
+| k2|         2|
+| k3|         2|
+| k4|         3|
++---+----------+
+&quot;&quot;&quot;
 </code></pre>
 <hr>
 <p><a href="https://stackoverflow.com/questions/36023860/how-to-use-a-scala-class-inside-pyspark">how-to-use-a-scala-class-inside-pyspark)</a></p>
 <p><a href="https://aseigneurin.github.io/2016/09/01/spark-calling-scala-code-from-pyspark.html">spark-calling-scala-code-from-pyspark</a></p>
-<!-- more -->
 
             </div>
           </article>
