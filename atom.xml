@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-07T09:21:31.524Z</updated>
+    <updated>2020-04-11T00:28:08.138Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -162,6 +162,13 @@ process()
 <li><a href="https://sharkdtu.com/posts/pyspark-internal.html">PySpark 的背后原理</a></li>
 </ol>
 <!-- more -->
+<ol start="2">
+<li><a href="https://medium.com/luckspark/installing-spark-2-3-0-on-macos-high-sierra-276a127b8b85">macos install scala and spark</a></li>
+<li><a href="https://towardsdatascience.com/python-vs-scala-a-comparison-of-the-basic-commands-fae23b3ede23">python-vs-scala-a-comparison-of-the-basic-commands</a></li>
+<li><a href="https://kontext.tech/column/spark/370/improve-pyspark-performance-using-pandas-udf-with-apache-arrow">improve-pyspark-performance-using-pandas-udf-with-apache-arrow</a></li>
+<li><a href="https://spoddutur.github.io/spark-notes/distribution_of_executors_cores_and_memory_for_spark_application.html">distribution_of_executors_cores_and_memory_for_spark_application</a></li>
+<li><a href="https://github.com/spoddutur/spark-notes">spark-notes</a></li>
+</ol>
 ]]></content>
     </entry>
     <entry>
