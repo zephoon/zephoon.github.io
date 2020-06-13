@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-06-13T08:32:11.306Z</updated>
+    <updated>2020-06-13T08:33:26.660Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -16,7 +16,8 @@
         <link href="https://zephoon.github.io/post/window-pei-zhi-pyspark/">
         </link>
         <updated>2020-06-13T08:23:05.000Z</updated>
-        <content type="html"><![CDATA[<p>新公司配了一台Thinkpad T480s，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
+        <content type="html"><![CDATA[<p><img src="https://zephoon.github.io/post-images/1592037197886.jpeg" alt="" loading="lazy"><br>
+新公司配了一台Thinkpad T480s，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
 <hr>
 <ol start="0">
 <li>基本环境配置信息</li>
