@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://zephoon.github.io</id>
     <title>zephoon</title>
-    <updated>2020-04-11T00:29:26.720Z</updated>
+    <updated>2020-06-13T08:18:59.594Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://zephoon.github.io"/>
     <link rel="self" href="https://zephoon.github.io/atom.xml"/>
@@ -687,55 +687,203 @@ plt.show()
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[window配置pyspark]]></title>
+        <title type="html"><![CDATA[windows搭建hadoop, spark, pyspark开发环境]]></title>
         <id>https://zephoon.github.io/post/window-pei-zhi-pyspark/</id>
         <link href="https://zephoon.github.io/post/window-pei-zhi-pyspark/">
         </link>
         <updated>2020-01-19T13:37:13.000Z</updated>
-        <content type="html"><![CDATA[<p>新公司配了一台Thinkpad，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
+        <content type="html"><![CDATA[<p>新公司配了一台Thinkpad T480s，工作不能用自己使用多年的MacbookPro， 很多使用习惯从头再来，相当折腾。😭😭😭</p>
 <hr>
 <ol start="0">
-<li>基本环境信息</li>
+<li>基本环境配置信息</li>
 </ol>
-<pre><code>window 10
-python 3.7.6
-conda 3.8.1
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>window</td>
+<td>10</td>
+</tr>
+<tr>
+<td>python</td>
+<td>3.7.6</td>
+</tr>
+<tr>
+<td>conda</td>
+<td>3.8.1</td>
+</tr>
+<tr>
+<td>pyspark</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>spark</td>
+<td>2.4.4</td>
+</tr>
+<tr>
+<td>hadoop</td>
+<td>2.7.7</td>
+</tr>
+<tr>
+<td>JDK</td>
+<td>1.8</td>
+</tr>
+</tbody>
+</table>
 <ol>
 <li>下载</li>
 </ol>
-<p>安装方式：直接解压到对应的路径下面，例如D盘的根目录下。</p>
-<p><a href="https://www.apache.org/dyn/closer.lua/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz">apache spark</a></p>
-<p><a href="https://github.com/cdarlint/winutils">winutils</a></p>
-<ol start="2">
+<p>安装方式：直接解压到对应的路径下面，例如C盘的根目录下。</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.apache.org/dyn/closer.lua/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz">apache spark</a></td>
+<td>spark-2.4.4-bin-hadoop2.7.tgz 包含pyspark包，可直接进行安装。</td>
+</tr>
+<tr>
+<td><a href="https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/">hadoop</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/cdarlint/winutils">winutils</a></td>
+<td>解压之后找到对应的版本，用里面bin替换hadoop的bin，这样才能在windows下运行hadoop。</td>
+</tr>
+</tbody>
+</table>
+<ol>
 <li>配置环境变量</li>
 </ol>
-<pre><code>SPARK_HOME: C:/spark/spark-2.4.4-bin-hadoop2.7
-HADOOP_HOME: C:/hadoop/winutils/hadoop-2.7.0
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPARK_HOME:</td>
+<td>C:/spark/spark-2.4.4-bin-hadoop2.7</td>
+</tr>
+<tr>
+<td>HADOOP_HOME:</td>
+<td>C:/hadoop/hadoop-2.7.0</td>
+</tr>
+<tr>
+<td>JAVA_HOME:</td>
+<td>C:/PROGRA~1/Java/jdk1.8.0_62</td>
+</tr>
+<tr>
+<td>Path:</td>
+<td>Path; %SPARK_HOME%/bin;%HADOOP_HOME%/bin;%JAVA_HOME%/bin;</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>
+<p>处理配置文件<br>
+<strong>%HADOOP_HOME%/etc</strong></p>
+<ol>
+<li>core-site.xml</li>
+</ol>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+     &lt;name&gt;fs.default.name&lt;/name&gt;
+     &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<ol start="2">
+<li>hdfs-site.xml</li>
+</ol>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+     &lt;name&gt;dfs.replication&lt;/name&gt;
+     &lt;value&gt;1&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+     &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+     &lt;value&gt;file:/C:/hadoop/hadoop-2.7.7/data/namenode&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+     &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+     &lt;value&gt;file:/C:/hadoop/hadoop-2.7.7/data/datanode&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
 </code></pre>
 <ol start="3">
-<li>安装pyspark<br>
-可以自行设置清华anaconda镜像源</li>
+<li>mapred-site.xml</li>
 </ol>
-<pre><code>conda install pyspark 
+<pre><code>&lt;configuration&gt;
+    &lt;property&gt;
+    &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+    &lt;value&gt;yarn&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
 </code></pre>
 <ol start="4">
-<li>代码测试</li>
+<li>yarn-site.xml</li>
 </ol>
-<pre><code>import sys
-import os
-from pathlib import WindowsPath
-
-SPARK_HOME_PATH = &quot;C:/spark/spark-2.4.4-bin-hadoop2.7&quot;
-HADOOP_HOME_PATH = &quot;C:/hadoop/winutils/hadoop-2.7.0&quot;
-os.environ['SPARK_HOME'] = SPARK_HOME_PATH
-os.environ['HADOOP_HOME'] = HADOOP_HOME_PATH
-if not SPARK_HOME_PATH in sys.path:
-    sys.path.append(SPARK_HOME_PATH)
-if not HADOOP_HOME_PATH in sys.path:
-    sys.path.append(HADOOP_HOME_PATH)
-
-import findspark 
+<pre><code>&lt;configuration&gt;
+    &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;
+    &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;
+        &lt;value&gt;127.0.0.1:8088&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+        &lt;value&gt;localhost&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+</li>
+<li>
+<p>启动测试</p>
+<pre><code>$ cd %HADOOP_HOME%/sbin
+$ hdfs namenode -fromat
+$ start-dfs.cmd
+$ start-yarn.cmd
+$ hdfs dfs -ls .
+$ hdfs dfs -mkdir /user/hadoop
+$ hdfs dfs -ls /user
+$ hdfs dfs -put /local/text /user/hadoop
+$ hdfs dfs -cat /user/hadoop/text
+</code></pre>
+</li>
+<li>
+<p>查看hadoop自带的web控制台</p>
+<ol>
+<li>资源管理: http://localhost:8088/</li>
+<li>节点管理: http://localhost:50070/</li>
+</ol>
+</li>
+<li>
+<p>安装pyspark<br>
+可以自行设置清华anaconda镜像源</p>
+<pre><code>conda install pyspark
+</code></pre>
+</li>
+<li>
+<p>代码测试</p>
+<pre><code>import findspark 
 findspark.init() 
 import pyspark # only run after findspark.init() 
 from pyspark.sql import SparkSession 
@@ -743,9 +891,9 @@ spark = SparkSession.builder.getOrCreate()
 df = spark.sql('''select 'spark' as hello ''') 
 df.show()
 </code></pre>
-<ol start="5">
-<li>done!!!😎😎😎</li>
+</li>
 </ol>
+<p>Well done!!!😎😎😎</p>
 <hr>
 <ol>
 <li><a href="https://changhsinlee.com/install-pyspark-windows-jupyter/">install-pyspark-windows-jupyter</a></li>
