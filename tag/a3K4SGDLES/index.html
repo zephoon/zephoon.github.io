@@ -3,7 +3,7 @@
   <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>centos7 | zephoon</title>
+<title>coverage | zephoon</title>
 <link rel="shortcut icon" href="https://zephoon.github.io/favicon.ico?v=1616245218781">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -84,32 +84,80 @@
 
         <div class="current-tag-container">
             <h2 class="title">
-                标签：#centos7
+                标签：#coverage
             </h2> 
         </div>
         <div class="post-container">
   
     <article class="post">
-      <a href="https://zephoon.github.io/post/install-oracle-instant-client-package-in-centos7/">
-        <h2 class="post-title">Install Oracle Instant Client Package in centos7</h2>
+      <a href="https://zephoon.github.io/post/usesonarqube-pytest-generates-coverage/">
+        <h2 class="post-title">useSonarQube + Pytest generates Coverage</h2>
       </a>
       <div class="post-info">
         <time class="post-time">
-          · 2020-04-01 ·
+          · 2021-03-20 ·
         </time>
         
-          <a href="https://zephoon.github.io/tag/NaWbETxId/" class="post-tag">
-            # oracle instant client
+          <a href="https://zephoon.github.io/tag/AfvSKApJp/" class="post-tag">
+            # sonarqube
           </a>
         
-          <a href="https://zephoon.github.io/tag/2NxcnQU917/" class="post-tag">
-            # centos7
+          <a href="https://zephoon.github.io/tag/H3Ov0NUiAS/" class="post-tag">
+            # pytest
+          </a>
+        
+          <a href="https://zephoon.github.io/tag/a3K4SGDLES/" class="post-tag">
+            # coverage
+          </a>
+        
+          <a href="https://zephoon.github.io/tag/wuHEA-YrVD/" class="post-tag">
+            # python
           </a>
         
       </div>
       
       <div class="post-abstract">
-        <p>To run ODPI-C applications with Oracle Instant Client zip files:</p>
+        <h2 id="backgroud">Backgroud</h2>
+<pre><code> There is a DevOps practices plan processing in our company. I can use JIRA, Bitbucket, CI Pipeline and SonarQube. So I would like to use the code quality tool SonarQube in my local to explore. And I find there is a problem the Converage index of the sonar-scanner result is always 0% when I have generated the pytest scan report. 
+</code></pre>
+<h3 id="project-structure">Project Structure</h3>
+<pre><code>-project
+    |-app
+    |-tests
+    |-coveragte.xml
+    |-sonar-project.properties
+</code></pre>
+<h3 id="define-a-sonar-projectproperties-under-the-root-project-folder">Define a sonar-project.properties under the root project folder</h3>
+<p>sonar-project.properties</p>
+<pre><code>#----- Default SonarQube server
+sonar.projectKey=XXX
+sonar.host.url=XXX
+sonar.login=XXX
+
+#----- Default source code encoding
+sonar.language=python
+sonar.projectVersion=1.0
+sonar.sources=app
+sonar.sourceEncoding=UTF-8
+sonar.dynamicAnalysis=reuseReports
+sonar.core.codeCoveragePlugin=cobertura
+sonar.python.coverage.reportPaths=coverage.xml
+</code></pre>
+<h3 id="install-a-related-python-package-run-pytest-and-sonar-scanner">Install a related python package, run pytest and sonar-scanner</h3>
+<pre><code>pip install pytest-cov
+cd project
+pytest --cov=app tests/ --cov-report=xml
+sonar-scanner
+</code></pre>
+<h3 id="check-info-from-python-interpreter-terminal">Check info from python interpreter terminal</h3>
+<p>Check the result from Quality Gate in the SonarQube dashboard</p>
+<pre><code>......
+INFO: Sensor Cobertua Sensor for Python coverage [python]
+INFO: Python test coverage
+INFO: Parsing report '...../app/tests/....'
+......
+</code></pre>
+<h3 id="done">Done</h3>
 
       </di>
     </article>
