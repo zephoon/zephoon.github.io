@@ -1,0 +1,202 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Learn Rust 18｜错误处理：为什么Rust的错误处理与众不同？ | zephoon</title>
+<link rel="shortcut icon" href="https://zephoon.github.io//favicon.ico?v=1660552668554">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://zephoon.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Learn Rust 18｜错误处理：为什么Rust的错误处理与众不同？ | zephoon - Atom Feed" href="https://zephoon.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="《陈天·Rust 第一课》
+处理错误的三种方式：
+
+返回错误码
+使用异常
+使用类型系统
+
+Rust 的错误处理
+
+Maybe: Option
+Either: Result
+
+?操作符
+panic！和 catch_unwind
+In Summ..." />
+    <meta name="keywords" content="Rust" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://zephoon.github.io/">
+  <img class="avatar" src="https://zephoon.github.io//images/avatar.png?v=1660552668554" alt="">
+  </a>
+  <h1 class="site-title">
+    zephoon
+  </h1>
+  <p class="site-description">
+    happy coding
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://zephoon.github.io/" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Learn Rust 18｜错误处理：为什么Rust的错误处理与众不同？
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-08-15
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+                <a href="https://zephoon.github.io/tag/TTFbF7uLk/" class="post-tag">
+                  # Rust
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>《陈天·Rust 第一课》</p>
+<p>处理错误的三种方式：</p>
+<ol>
+<li>返回错误码</li>
+<li>使用异常</li>
+<li>使用类型系统</li>
+</ol>
+<p>Rust 的错误处理</p>
+<ul>
+<li>Maybe: Option</li>
+<li>Either: Result</li>
+</ul>
+<p>?操作符<br>
+panic！和 catch_unwind</p>
+<p>In Summary<br>
+主要用类型系统来处理错误，辅以异常来应对不可恢复的错误。</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://zephoon.github.io/post/learn-rust-12-lei-xing-xi-tong-rust-de-lei-xing-xi-tong-you-shi-me-te-dian/">
+              <h3 class="post-title">
+                Learn Rust 12 类型系统：Rust的类型系统有什么特点
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://zephoon.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

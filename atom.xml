@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://zephoon.github.io/</id>
+    <title>zephoon</title>
+    <updated>2022-08-15T08:37:52.345Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://zephoon.github.io/"/>
+    <link rel="self" href="https://zephoon.github.io/atom.xml"/>
+    <subtitle>happy coding</subtitle>
+    <logo>https://zephoon.github.io/images/avatar.png</logo>
+    <icon>https://zephoon.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, zephoon</rights>
+    <entry>
+        <title type="html"><![CDATA[Learn Rust 19｜闭包：FnOnce、FnMut和Fn，为什么有这么多类型？]]></title>
+        <id>https://zephoon.github.io/post/learn-rust-19orbi-bao-fnoncefnmut-he-fnwei-shi-me-you-zhe-me-duo-lei-xing/</id>
+        <link href="https://zephoon.github.io/post/learn-rust-19orbi-bao-fnoncefnmut-he-fnwei-shi-me-you-zhe-me-duo-lei-xing/">
+        </link>
+        <updated>2022-08-15T07:15:52.000Z</updated>
+        <content type="html"><![CDATA[<p>《陈天· Rust 编程第一课》</p>
+<ol>
+<li>闭包是将函数，或者代码和其环境一起存储的一种数据结构。</li>
+<li>闭包的大小跟参数和局部变量无关，只跟捕获的变量有关。</li>
+<li>闭包的效率非常高。</li>
+<li>闭包捕获的变量都存储在栈上，没有堆内存分配。每个闭包都是一个新的类型，Rust 不需要额外的函数指针来运行闭包。闭包的调用效率和函数调用几乎一致。</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Rust 18｜错误处理：为什么Rust的错误处理与众不同？]]></title>
+        <id>https://zephoon.github.io/post/learn-rust-18orcuo-wu-chu-li-wei-shi-me-rust-de-cuo-wu-chu-li-yu-zhong-bu-tong/</id>
+        <link href="https://zephoon.github.io/post/learn-rust-18orcuo-wu-chu-li-wei-shi-me-rust-de-cuo-wu-chu-li-yu-zhong-bu-tong/">
+        </link>
+        <updated>2022-08-15T06:41:57.000Z</updated>
+        <content type="html"><![CDATA[<p>《陈天·Rust 第一课》</p>
+<p>处理错误的三种方式：</p>
+<ol>
+<li>返回错误码</li>
+<li>使用异常</li>
+<li>使用类型系统</li>
+</ol>
+<p>Rust 的错误处理</p>
+<ul>
+<li>Maybe: Option</li>
+<li>Either: Result</li>
+</ul>
+<p>?操作符<br>
+panic！和 catch_unwind</p>
+<p>In Summary<br>
+主要用类型系统来处理错误，辅以异常来应对不可恢复的错误。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Rust 12 类型系统：Rust的类型系统有什么特点]]></title>
+        <id>https://zephoon.github.io/post/learn-rust-12-lei-xing-xi-tong-rust-de-lei-xing-xi-tong-you-shi-me-te-dian/</id>
+        <link href="https://zephoon.github.io/post/learn-rust-12-lei-xing-xi-tong-rust-de-lei-xing-xi-tong-you-shi-me-te-dian/">
+        </link>
+        <updated>2022-08-14T07:19:45.000Z</updated>
+        <content type="html"><![CDATA[<p>《陈天·Rust 编程第一课》</p>
+<p>课后思考题练习：</p>
+<pre><code>use std::io::{BufWriter, Write};
+use std::net::TcpStream;
+
+
+#[derive(Debug)]
+struct MyWriter&lt;W&gt; {
+    writer: W,
+}
+
+
+impl&lt;W: Write&gt; MyWriter&lt;W&gt;{
+
+    pub fn new(writer: W) -&gt; Self {
+        Self {
+            writer,
+        }
+    }
+
+    pub fn write(&amp;mut self, buf: &amp;str) -&gt; std::io::Result&lt;()&gt; {
+        self.writer.write_all(buf.as_bytes())
+    }
+}
+
+
+fn main() {
+    let stream = BufWriter::new(TcpStream::connect(&quot;127.0.0.1:8080&quot;).unwrap());
+    let mut writer = MyWriter::new(stream);
+    writer.write(&quot;hello world!&quot;);
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learn Rust 11. 内存管理：从创建到消亡，值都经历了什么]]></title>
+        <id>https://zephoon.github.io/post/learn-rust/</id>
+        <link href="https://zephoon.github.io/post/learn-rust/">
+        </link>
+        <updated>2022-08-14T04:03:23.000Z</updated>
+        <content type="html"><![CDATA[<p>《陈天·Rust 编程第一课》<br>
+https://cheats.rs/</p>
+]]></content>
+    </entry>
+</feed>
