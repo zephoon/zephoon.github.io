@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://zephoon.github.io/</id>
+    <title>Gridea</title>
+    <updated>2024-05-26T09:09:42.123Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://zephoon.github.io/"/>
+    <link rel="self" href="https://zephoon.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://zephoon.github.io/images/avatar.png</logo>
+    <icon>https://zephoon.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Rust ]]></title>
+        <id>https://zephoon.github.io/post/hello-gridea/</id>
+        <link href="https://zephoon.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>new journey</p>
+]]></content>
+    </entry>
+</feed>
